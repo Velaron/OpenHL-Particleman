@@ -16,18 +16,19 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
+#include "wrect.h"
+#include "cl_dll.h"
 #include "interface.h"
 #include "cvardef.h"
-#include "util_vector.h"
 #include "const.h"
-#include "com_model.h"
-#include "cdll_int.h"
 #include "particleman.h"
 #include "pman_frustum.h"
 #include "pman_main.h"
 #include "pman_misc.h"
 #include "pman_force.h"
 #include "pman_particlemem.h"
+
+extern long g_lMaxParticleClassSize;
 
 IParticleMan *g_pParticleMan;
 cvar_t *cl_pmanstats;
@@ -37,6 +38,8 @@ Vector g_vViewAngles;
 float g_flGravity;
 
 int g_iRenderMode = 1;
+
+long MaxParticleClassSize( unsigned long lSize );
 
 bool IsGamePaused( void )
 {
@@ -210,9 +213,9 @@ IParticleMan *CreateActiveMan( void )
 	return (IParticleMan *)new IParticleMan_Active();
 }
 
-IBaseInterface *CreateParticleMan( void )
+void *CreateParticleMan( void )
 {
 	return (IBaseInterface *)new IParticleMan_Active();
 }
 
-EXPOSE_INTERFACE_FN( CreateParticleMan, IParticleMan_Active, PARTICLEMAN_INTERFACE );
+EXPOSE_INTERFACE_FN( CreateParticleMan, IParticleMan, PARTICLEMAN_INTERFACE );

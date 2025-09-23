@@ -19,8 +19,6 @@
 #ifndef __PMAN_FORCE_H__
 #define __PMAN_FORCE_H__
 
-#include "util_vector.h"
-
 class ForceMember
 {
 public:

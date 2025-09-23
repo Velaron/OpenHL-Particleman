@@ -17,17 +17,12 @@
 */
 
 #include "triangleapi.h"
-#include "util_vector.h"
-#include "pman_main.h"
+#include "wrect.h"
+#include "cl_dll.h"
 #include "pman_frustum.h"
 
-#ifdef _WIN32
-#define HSPRITE HSPRITE_win32
-#include "windows.h"
-#undef HSPRITE
-#endif
-
-#include <gl/GL.h>
+#define GL_PROJECTION_MATRIX 0x0BA7
+#define GL_MODELVIEW_MATRIX  0x0BA6
 
 CFrustum g_cFrustum;
 

@@ -16,11 +16,11 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "util_vector.h"
+#include "wrect.h"
+#include "cl_dll.h"
 #include "const.h"
-#include "cl_entity.h"
 #include "pman_particlemem.h"
-#include "pman_main.h"
+#include "particleman.h"
 
 VectorOfMemoryBlocks CMiniMem::m_vecMemoryPool;
 long CMiniMem::m_lMemoryPoolSize;
@@ -163,33 +163,33 @@ void CMiniMem::ProcessAll( void )
 	{
 	}
 
-	while ( pNode )
-	{
-		CCoreTriangleEffect *pEffect = (CCoreTriangleEffect *)pNode->Memory();
-
-		if ( !pEffect )
-			continue;
-
-		m_iTotalParticles++;
-
-		if ( pEffect->CheckVisibility() )
-		{
-			pEffect->SetPlayerDistance( ( gEngfuncs.GetLocalPlayer()->origin - pEffect->m_vOrigin ).Length() );
-			m_pVisibleParticles[m_iParticlesDrawn].pVisibleParticle = pEffect;
-			CMiniMem::Instance()->IncreaseParticlesDrawn();
-		}
-
-		if ( !IsGamePaused() )
-			pEffect->Think( time );
-
-		if ( pEffect->m_flDieTime != 0.0f && time >= pEffect->m_flDieTime )
-		{
-			pEffect->Die();
-			deleteBlock( pNode );
-		}
-
-		pNode = pNode->next;
-	}
+	// while ( pNode )
+	// {
+	// 	CCoreTriangleEffect *pEffect = (CCoreTriangleEffect *)pNode->Memory();
+	//
+	// 	if ( !pEffect )
+	// 		continue;
+	//
+	// 	m_iTotalParticles++;
+	//
+	// 	if ( pEffect->CheckVisibility() )
+	// 	{
+	// 		pEffect->SetPlayerDistance( ( gEngfuncs.GetLocalPlayer()->origin - pEffect->m_vOrigin ).Length() );
+	// 		m_pVisibleParticles[m_iParticlesDrawn].pVisibleParticle = pEffect;
+	// 		CMiniMem::Instance()->IncreaseParticlesDrawn();
+	// 	}
+	//
+	// 	if ( !IsGamePaused() )
+	// 		pEffect->Think( time );
+	//
+	// 	if ( pEffect->m_flDieTime != 0.0f && time >= pEffect->m_flDieTime )
+	// 	{
+	// 		pEffect->Die();
+	// 		deleteBlock( pNode );
+	// 	}
+	//
+	// 	pNode = pNode->next;
+	// }
 
 	qsort( m_pVisibleParticles, m_iParticlesDrawn, sizeof( visibleparticles_t ), ParticleSortFn );
 
@@ -217,6 +217,8 @@ int CMiniMem::ApplyForce( Vector p_vOrigin, Vector p_vDirection, float flRadius,
 		mins = pEffect->m_vOrigin - Vector( size, size, size );
 		maxs = pEffect->m_vOrigin + Vector( size, size, size );
 	}
+
+	return 0;
 }
 
 void CMiniMem::Reset( void )

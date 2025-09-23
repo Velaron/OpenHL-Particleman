@@ -19,6 +19,11 @@
 #ifndef __PMAN_MISC_H__
 #define __PMAN_MISC_H__
 
+void VectorMA( const float *veca, float scale, const float *vecb, float *vecc );
+float VectorNormalize( float *v );
+void VectorScale( const float *in, float scale, float *out );
+void UpdateParticles( void );
+
 extern float g_flOldTime;
 
 #endif // __PMAN_MISC_H__

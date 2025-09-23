@@ -16,14 +16,16 @@
 * along with this program.  If not, see <https://www.gnu.org/licenses/>.
 */
 
-#include "util_vector.h"
+#include "wrect.h"
+#include "cl_dll.h"
 #include "const.h"
-#include "com_model.h"
 #include "triangleapi.h"
 #include "pman_triangleffect.h"
-#include "pman_main.h"
 #include "pman_frustum.h"
 #include "pman_misc.h"
+
+extern Vector g_vViewAngles;
+extern float g_flGravity;
 
 const Vector g_vecZero = Vector( 0.0f, 0.0f, 0.0f );
 

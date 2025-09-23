@@ -19,22 +19,6 @@
 #ifndef __PMAN_MAIN_H__
 #define __PMAN_MAIN_H__
 
-#include "cdll_int.h"
-#include "particleman.h"
-#include "pman_force.h"
-
-extern ForceList g_pForceList;
-extern cl_enginefunc_t gEngfuncs;
-
-extern long g_lMaxParticleClassSize;
-
-extern Vector g_vViewAngles;
-extern float g_flGravity;
-
-bool IsGamePaused( void );
-void UpdateParticles( void );
-long MaxParticleClassSize( unsigned long lSize );
-
 class IParticleMan_Active : public IParticleMan
 {
 public:
